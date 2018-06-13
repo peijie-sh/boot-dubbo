@@ -5,8 +5,74 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.lpj.boot</groupId>
-    <artifactId>demo</artifactId>
+    <artifactId>boot-dubbo-parent</artifactId>
+    <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
 
+    <name>boot-dubbo</name>
+    <description>A project with Dubbo and Spring Boot</description>
+
+    <modules>
+        <module>dubbo-api</module>
+        <module>dubbo-provider</module>
+        <module>dubbo-consumer</module>
+    </modules>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <java.version>1.8</java.version>
+        <dubbo-spring-boot-starter.version>2.0.0</dubbo-spring-boot-starter.version>
+        <springboot.version>1.5.13.RELEASE</springboot.version>
+        <fastjson-version>1.2.47</fastjson-version>
+        <lombok-version>1.16.18</lombok-version>
+        <zk-client.version>0.10</zk-client.version>
+        <dockerfile-maven.version>1.4.3</dockerfile-maven.version>
+    </properties>
+
+    <!-- 真正被子模块继承并加载的依赖 -->
+    <dependencies>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>${lombok-version}</version>
+            <optional>true</optional>
+        </dependency>
+    </dependencies>
+
+    <!-- 这里的不会传递依赖给子模块 -->
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>com.alibaba.spring.boot</groupId>
+                <artifactId>dubbo-spring-boot-starter</artifactId>
+                <version>${dubbo-spring-boot-starter.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-logging</artifactId>
+                <version>${springboot.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-test</artifactId>
+                <version>${springboot.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.101tec</groupId>
+                <artifactId>zkclient</artifactId>
+                <version>${zk-client.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>${lombok-version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
 </project>
